@@ -253,7 +253,7 @@ const makingSwiper = new Swiper(".making-slider", {
     slidesPerView: 1,
     slidesPerGroup: 1,
     spaceBetween: 16,
-    speed: 4500,
+    speed: 3500,
 
     loop: true,
     rewind: false,
@@ -327,4 +327,48 @@ newsletterForm.addEventListener("submit", (event) => {
 
     newsletterStatus.textContent =
         "Thanks for your interest! Newsletter subscription is not connected yet.";
+});
+
+
+
+/* Responsive Navbar Hamburger */
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu() {
+    hamburger.classList.remove("active");
+    navLinks.classList.remove("active");
+
+    hamburger.setAttribute("aria-expanded", "false");
+    hamburger.setAttribute("aria-label", "Open navigation menu");
+}
+
+hamburger.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("active");
+
+    hamburger.classList.toggle("active", isOpen);
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+    hamburger.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+});
+
+/* Close menu after clicking any navigation link */
+navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMobileMenu);
+});
+
+/* Close menu with Escape key */
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeMobileMenu();
+    }
+});
+
+/* Close menu when switching back to desktop */
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+        closeMobileMenu();
+    }
 });
