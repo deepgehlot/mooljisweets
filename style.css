@@ -151,7 +151,7 @@ img {
 
 /* Mobile menu */
 @media (max-width: 768px) {
-    
+
 
     .hamburger {
         display: flex;
@@ -447,7 +447,7 @@ img {
     .navbar {
         min-height: auto;
         padding: 12px 16px;
-       
+
         justify-content: space-between;
         gap: 8px;
     }
@@ -955,6 +955,57 @@ button.product-image {
     font-size: 12px;
     line-height: 1.6;
 }
+
+
+/* Enquiry Terms & Conditions */
+.enquiry-terms {
+    margin: 18px 0;
+}
+
+.terms-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #4b362b;
+    cursor: pointer;
+}
+
+.terms-checkbox input {
+    width: 17px;
+    height: 17px;
+    min-width: 17px;
+    margin-top: 3px;
+    accent-color: #6b321c;
+    cursor: pointer;
+}
+
+.terms-checkbox a {
+    color: #6b321c;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.terms-checkbox a:hover {
+    color: #8b451f;
+}
+
+.terms-required {
+    display: none;
+    margin: 6px 0 0 27px;
+    color: #c62828;
+    font-size: 12px;
+}
+
+.enquiry-terms:has(input:invalid) .terms-required {
+    display: none;
+}
+
+.enquiry-terms input:invalid:not(:focus) {
+    outline-color: #c62828;
+}
+
 
 .enquiry-actions {
     display: flex;
@@ -2468,7 +2519,7 @@ body.enquiry-open {
     color: #777;
 }
 
-.policy-container + * {
+.policy-container+* {
     margin-top: 20px;
 }
 

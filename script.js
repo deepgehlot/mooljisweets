@@ -149,7 +149,7 @@ document.addEventListener("keydown", (event) => {
 
 // Replace this with the actual business WhatsApp number.
 // Country code included, digits only. Example format: 919876543210
-const BUSINESS_WHATSAPP_NUMBER = "918441937079";
+const BUSINESS_WHATSAPP_NUMBER = "918739801711";
 
 enquiryForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -157,6 +157,16 @@ enquiryForm.addEventListener("submit", (event) => {
     if (!enquiryForm.reportValidity()) {
         return;
     }
+    const acceptTerms = document.getElementById("acceptTerms");
+
+    if (!acceptTerms.checked) {
+        acceptTerms.focus();
+
+        document.querySelector(".terms-required").style.display = "block";
+        return;
+    }
+
+    document.querySelector(".terms-required").style.display = "none";
 
     const formData = new FormData(enquiryForm);
 
