@@ -1175,7 +1175,7 @@ body.enquiry-open {
 }
 
 .story-quote footer strong {
-    color: #3a3029;
+    color: white;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -2084,6 +2084,45 @@ body.enquiry-open {
     min-width: 0;
 }
 
+/* Footer Policy Buttons */
+.footer-policy-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.footer-policy-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid #c8a27a;
+    border-radius: 6px;
+    background: #6b321c;
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    transition: background 0.25s ease;
+}
+
+.footer-policy-btn:hover {
+    background: #8b451f;
+}
+
+@media (max-width: 480px) {
+    .footer-policy-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .footer-policy-btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+}
+
 .footer-column h3 {
     margin: 0 0 23px;
     color: #fff4e8;
@@ -2376,4 +2415,73 @@ body.enquiry-open {
 .productsSwiper .swiper-wrapper,
 .making-slider .swiper-wrapper {
     transition-timing-function: linear !important;
+}
+
+
+
+/* Privacy Policy and Refund Policy pages */
+.policy-page {
+    min-height: 60vh;
+    padding: 60px 20px;
+    background: #fffaf3;
+}
+
+.policy-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.policy-container h1 {
+    margin: 0 0 20px;
+    color: #6b321c;
+    font-size: clamp(28px, 4vw, 40px);
+}
+
+.policy-container section {
+    margin-top: 30px;
+}
+
+.policy-container h2 {
+    margin-bottom: 10px;
+    color: #6b321c;
+    font-size: 20px;
+}
+
+.policy-container p {
+    line-height: 1.8;
+    color: #555;
+}
+
+.policy-container a,
+.footer-bottom a {
+    color: white;
+    text-decoration: underline;
+}
+
+.policy-updated {
+    margin-top: 35px;
+    font-size: 14px;
+    color: #777;
+}
+
+.policy-container + * {
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .policy-page {
+        padding: 30px 14px;
+    }
+
+    .policy-container {
+        padding: 24px 18px;
+    }
+
+    .policy-container h2 {
+        font-size: 18px;
+    }
 }
