@@ -1219,6 +1219,10 @@ body.enquiry-open {
     line-height: 1.5;
 }
 
+.story-quote span {
+    color: #922b25;
+}
+
 .story-quote footer {
     display: flex;
     flex-direction: column;
@@ -1230,6 +1234,7 @@ body.enquiry-open {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+     color: #b52b24;
 }
 
 .story-quote footer span {
@@ -2509,7 +2514,7 @@ body.enquiry-open {
 
 .policy-container a,
 .footer-bottom a {
-    color: white;
+   color: #777;;
     text-decoration: underline;
 }
 
@@ -2536,3 +2541,4 @@ body.enquiry-open {
         font-size: 18px;
     }
 }
+
