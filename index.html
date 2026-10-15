@@ -227,14 +227,15 @@
                     </div>
 
                     <!-- product 5 -->
-                       <div class="swiper-slide product-card">
+                    <div class="swiper-slide product-card">
 
                         <img src="./public/Products/imgi_3_dal_badam_chakki.webp" alt="Motichoor Ladoo" loading="lazy">
 
                         <div class="product-info">
                             <h3>DAL BADAM CHAKKI</h3>
 
-                            <button type="button" class="product-button enquire-trigger" data-product="DAL BADAM CHAKKI">
+                            <button type="button" class="product-button enquire-trigger"
+                                data-product="DAL BADAM CHAKKI">
                                 Enquire Now
                             </button>
                         </div>
@@ -467,7 +468,8 @@
                     <button type="button" class="store-product-image enquire-trigger"
                         data-product="Assorted Dry Fruits Sweets Box"
                         aria-label="Enquire about Assorted Dry Fruits Sweets Box">
-                        <img src="./public/Products/dryfruitbox.jpg" alt="Assorted Dry Fruits Sweets Box" loading="lazy">
+                        <img src="./public/Products/dryfruitbox.jpg" alt="Assorted Dry Fruits Sweets Box"
+                            loading="lazy">
                     </button>
                     <div class="store-product-info">
                         <h3>Assorted Dry Fruits Sweets Box</h3>
@@ -475,11 +477,10 @@
                             data-product="Assorted Dry Fruits Sweets Box">Enquire Now</button>
                     </div>
                 </article>
-<!-- 
+                <!-- 
                 product 12  -->
                 <article class="store-product">
-                    <button type="button" class="store-product-image enquire-trigger"
-                        data-product="PANCH MEWA CHAKKI"
+                    <button type="button" class="store-product-image enquire-trigger" data-product="PANCH MEWA CHAKKI"
                         aria-label="Enquire about PANCH MEWA CHAKKI">
                         <img src="./public/Products/panchMewa.jpg" alt="PANCH MEWA CHAKKI" loading="lazy">
                     </button>
@@ -737,7 +738,8 @@
                 </form>
 
                 <div class="footer-socials">
-                    <a href="https://www.facebook.com/mooljisweets/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <a href="https://www.facebook.com/mooljisweets/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Facebook">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path fill="currentColor"
                                 d="M12 2a10 10 0 1 0 1.7 19.85v-7.03h-2.36v-2.82h2.36v-2.1c0-2.33 1.39-3.62 3.52-3.62.7 0 1.44.12 1.44.12v2.3h-.81c-.8 0-1.05.5-1.05 1.01V12h2.69l-.43 2.82H16.8v7.03A10 10 0 0 0 12 2Z" />
@@ -937,6 +939,119 @@
             </form>
         </div>
     </div>
+
+
+    <!-- Diwali Pre-Booking Popup -->
+    <div class="welcome-popup" id="welcomePopup" aria-hidden="true">
+        <div class="welcome-popup-overlay" data-close-welcome></div>
+
+        <div class="welcome-popup-box diwali-popup-box" role="dialog" aria-modal="true"
+            aria-labelledby="welcomePopupTitle">
+
+            <button type="button" class="welcome-popup-close" data-close-welcome
+                aria-label="Close popup">&times;</button>
+
+            <!-- Left: Sweet Image -->
+            <div class="welcome-popup-visual diwali-popup-visual">
+                <img class="diwali-main-image" src="./public/out_story.jpg"
+                    alt="Moolji Sweets festive sweets and gift hamper">
+
+                <div class="diwali-image-overlay">
+                    <p class="welcome-kicker">FESTIVE CELEBRATIONS</p>
+                    <h2>Diwali Ki Mithaas,<br> Moolji Ke Saath!</h2>
+                    <p>Apni pasand ki mithai abhi pre-book karein.</p>
+                    <span>Authentic Jodhpur Sweets Since 1911</span>
+                </div>
+            </div>
+
+            <!-- Right: Booking Form -->
+            <div class="welcome-popup-form-wrap diwali-form-wrap">
+                <p class="welcome-form-kicker">DIWALI SPECIAL</p>
+                <h3 id="welcomePopupTitle">Diwali Pre-Booking</h3>
+                <p class="welcome-form-description">
+                    Apni favourite mithai aur quantity select karein.
+                </p>
+
+                <form id="welcomeOfferForm">
+                    <div class="welcome-field">
+                        <label for="welcomeName">Full Name *</label>
+                        <input type="text" id="welcomeName" name="name" placeholder="Enter your name"
+                            autocomplete="name" required>
+                    </div>
+
+                    <div class="welcome-field">
+                        <label for="welcomeEmail">Email Address *</label>
+                        <input type="email" id="welcomeEmail" name="email" placeholder="Enter your email"
+                            autocomplete="email" required>
+                    </div>
+
+                    <div class="welcome-field">
+                        <label for="welcomeMobile">Mobile Number *</label>
+                        <input type="tel" id="welcomeMobile" name="mobile" placeholder="10-digit mobile number"
+                            inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" autocomplete="tel-national"
+                            required>
+                    </div>
+
+                    <!-- Product and KG quantity rows -->
+                    <div class="welcome-field">
+                        <label>Your Sweets & Quantity *</label>
+
+                        <div id="diwaliProductRows">
+                            <div class="diwali-product-row">
+                                <select name="product[]" aria-label="Select sweet" required>
+                                    <option value="">Select a product</option>
+                                    <option>Ghewar DIY BOX</option>
+                                    <option>Kaju Katli</option>
+                                    <option>Kesar Katli</option>
+                                    <option>Besan Chakki</option>
+                                    <option>Dal Badam Chakki</option>
+                                    <option>Gulab Jamun</option>
+                                    <option>Goond Badam Laddu</option>
+                                    <option>Makkhanbada (Balushahi)</option>
+                                    <option>Thor</option>
+                                    <option>Soan Papdi</option>
+                                    <option>Assorted Dry Fruits Sweets Box</option>
+                                    <option>Panch Mewa Chakki</option>
+                                </select>
+
+
+                                <input type="number" name="quantity[]" placeholder="Qty (KG)"
+                                    aria-label="Quantity in kilograms" min="0.25" max="1000" step="0.25" required>
+
+                                <button type="button" class="diwali-remove-product" aria-label="Remove product"
+                                    title="Remove product" hidden>&times;</button>
+                            </div>
+                        </div>
+
+                        <button type="button" id="addDiwaliProduct" class="diwali-add-product">
+                            + Add Another Sweet
+                        </button>
+                    </div>
+
+                    <label class="welcome-consent">
+                        <input type="checkbox" id="welcomeConsent" required>
+                        <span>
+                            I agree to share my details for Diwali pre-booking.
+                            Read our <a href="./privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy
+                                Policy</a>.
+                        </span>
+                    </label>
+
+                    <button type="submit" class="welcome-submit">
+                        Send Pre-Booking on WhatsApp <span aria-hidden="true">→</span>
+                    </button>
+
+                    <p class="welcome-form-status" id="welcomeFormStatus" role="status" aria-live="polite"></p>
+
+                    <p class="welcome-privacy-note">
+                        Your booking details will open in WhatsApp for you to send.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
 
 

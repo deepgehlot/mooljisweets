@@ -382,3 +382,188 @@ window.addEventListener("resize", () => {
         closeMobileMenu();
     }
 });
+
+
+/* Diwali Pre-Booking Popup */
+const welcomePopup = document.getElementById("welcomePopup");
+const welcomeOfferForm = document.getElementById("welcomeOfferForm");
+const welcomeFormStatus = document.getElementById("welcomeFormStatus");
+const diwaliProductRows = document.getElementById("diwaliProductRows");
+const addDiwaliProduct = document.getElementById("addDiwaliProduct");
+
+const WELCOME_WHATSAPP_NUMBER = "918739801711";
+const WELCOME_SESSION_KEY = "mooljiWelcomePopupClosed";
+
+function openWelcomePopup() {
+    if (sessionStorage.getItem(WELCOME_SESSION_KEY) === "yes") return;
+
+    welcomePopup.classList.add("is-visible");
+    welcomePopup.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+}
+
+function closeWelcomePopup() {
+    welcomePopup.classList.remove("is-visible");
+    welcomePopup.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    sessionStorage.setItem(WELCOME_SESSION_KEY, "yes");
+}
+
+// Show popup shortly after the page loads
+if (document.readyState === "complete") {
+    setTimeout(openWelcomePopup, 900);
+} else {
+    window.addEventListener("load", () => {
+        setTimeout(openWelcomePopup, 900);
+    }, { once: true });
+}
+
+// Close button and backdrop
+welcomePopup.querySelectorAll("[data-close-welcome]").forEach((element) => {
+    element.addEventListener("click", closeWelcomePopup);
+});
+
+// Close with Escape
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" &&
+        welcomePopup.classList.contains("is-visible")) {
+        closeWelcomePopup();
+    }
+});
+
+// Add another product and quantity row
+addDiwaliProduct.addEventListener("click", () => {
+    const firstRow = diwaliProductRows.querySelector(".diwali-product-row");
+    const newRow = firstRow.cloneNode(true);
+
+    newRow.querySelectorAll("select").forEach((select) => {
+        select.selectedIndex = 0;
+    });
+
+    newRow.querySelector(".diwali-remove-product").hidden = false;
+    diwaliProductRows.appendChild(newRow);
+    updateDiwaliProductRows();
+});
+
+// Remove a product row
+diwaliProductRows.addEventListener("click", (event) => {
+    const removeButton = event.target.closest(".diwali-remove-product");
+    if (!removeButton) return;
+
+    removeButton.closest(".diwali-product-row").remove();
+    updateDiwaliProductRows();
+});
+
+function updateDiwaliProductRows() {
+    const rows = diwaliProductRows.querySelectorAll(".diwali-product-row");
+
+    rows.forEach((row) => {
+        row.querySelector(".diwali-remove-product").hidden = rows.length === 1;
+    });
+}
+
+// Submit pre-booking details to WhatsApp
+welcomeOfferForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    welcomeFormStatus.textContent = "";
+
+    if (!welcomeOfferForm.reportValidity()) return;
+
+    const formData = new FormData(welcomeOfferForm);
+    const name = formData.get("name").trim();
+    const email = formData.get("email").trim();
+    const mobile = formData.get("mobile").trim();
+
+    const products = [...diwaliProductRows.querySelectorAll(".diwali-product-row")]
+        .map((row) => ({
+            product: row.querySelector('select[name="product[]"]').value,
+            quantity: row.querySelector('input[name="quantity[]"]').value
+        }))
+        .filter((item) => item.product && item.quantity);
+
+    if (products.length === 0) {
+        welcomeFormStatus.textContent = "Please select at least one sweet and quantity.";
+        return;
+    }
+
+    // Prevent the same product from being selected more than once
+    const productNames = products.map((item) => item.product);
+    if (new Set(productNames).size !== productNames.length) {
+        welcomeFormStatus.textContent =
+            "A product is selected more than once. Please combine its quantity in one row.";
+        return;
+    }
+
+    const invalidQuantity = products.some((item) => {
+        const quantity = Number(item.quantity);
+
+        return !Number.isFinite(quantity) ||
+            quantity < 0.25 ||
+            quantity > 1000 ||
+            Math.round(quantity * 100) % 25 !== 0;
+    });
+
+    if (invalidQuantity) {
+        welcomeFormStatus.textContent =
+            "Please enter a quantity between 0.25 and 1000 KG in increments of 0.25 KG.";
+        return;
+    }
+
+
+
+    const productLines = products.map((item, index) => {
+        const quantity = Number(item.quantity);
+        const quantityLabel = quantity < 1
+            ? `${quantity * 1000} g`
+            : `${quantity} KG`;
+
+        return `${index + 1}. ${item.product} - ${quantityLabel}`;
+    });
+
+    const message = [
+        "Namaste Moolji Sweets!",
+        "",
+        "I would like to pre-book sweets for Diwali.",
+        "",
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Mobile: ${mobile}`,
+        "",
+        "Pre-Booking Details:",
+        ...productLines,
+        "",
+        "Please confirm availability, prices and order collection/delivery details.",
+        "Thank you!"
+    ].join("\n");
+
+    const whatsappNumber = WELCOME_WHATSAPP_NUMBER.replace(/\D/g, "");
+
+    if (!/^91[6-9]\d{9}$/.test(whatsappNumber)) {
+        welcomeFormStatus.textContent =
+            "Please check the business WhatsApp number in script.js.";
+        return;
+    }
+
+    const whatsappUrl =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    // Open WhatsApp after the customer submits the form
+    const whatsappWindow = window.open(whatsappUrl, "_blank");
+
+    if (!whatsappWindow) {
+        welcomeFormStatus.textContent =
+            "WhatsApp did not open. Please allow popups and try again.";
+        return;
+    }
+
+    whatsappWindow.opener = null;
+    closeWelcomePopup();
+    welcomeOfferForm.reset();
+
+    // Keep only the first product row after submission
+    const rows = diwaliProductRows.querySelectorAll(".diwali-product-row");
+    rows.forEach((row, index) => {
+        if (index > 0) row.remove();
+    });
+    updateDiwaliProductRows();
+});

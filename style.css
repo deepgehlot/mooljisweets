@@ -1234,7 +1234,7 @@ body.enquiry-open {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-     color: #b52b24;
+    color: #b52b24;
 }
 
 .story-quote footer span {
@@ -2514,7 +2514,8 @@ body.enquiry-open {
 
 .policy-container a,
 .footer-bottom a {
-   color: #777;;
+    color: #777;
+    ;
     text-decoration: underline;
 }
 
@@ -2542,3 +2543,565 @@ body.enquiry-open {
     }
 }
 
+
+
+
+/* Diwali pre-booking popup */
+.diwali-popup-box {
+    grid-template-columns: 0.9fr 1.1fr;
+}
+
+.diwali-popup-visual {
+    position: relative;
+    min-height: 600px;
+    padding: 0;
+    overflow: hidden;
+    background: #641d20;
+}
+
+.diwali-main-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.diwali-image-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px 26px;
+    color: #fff;
+    background: linear-gradient(180deg,
+            rgba(40, 12, 8, 0.05) 15%,
+            rgba(40, 12, 8, 0.88) 100%);
+}
+
+.diwali-image-overlay h2 {
+    margin: 0 0 12px;
+    color: #fff5df;
+    font-family: Georgia, serif;
+    font-size: clamp(27px, 3vw, 38px);
+    line-height: 1.2;
+}
+
+.diwali-image-overlay>p:not(.welcome-kicker) {
+    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.diwali-image-overlay span {
+    color: #f5d28b;
+    font-size: 11px;
+}
+
+.diwali-form-wrap {
+    min-width: 0;
+}
+
+.diwali-product-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 105px 28px;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 9px;
+}
+
+.diwali-product-row select {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    padding: 8px;
+    border: 1px solid #dfd1c1;
+    border-radius: 7px;
+    background: #fffdf9;
+    color: #33251e;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.diwali-remove-product {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: #f5e4df;
+    color: #76231f;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.diwali-remove-product[hidden] {
+    display: none;
+}
+
+.diwali-add-product {
+    margin-top: 3px;
+    padding: 7px 0;
+    border: 0;
+    background: transparent;
+    color: #76231f;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .diwali-popup-box {
+        grid-template-columns: 1fr;
+    }
+
+    .diwali-popup-visual {
+        min-height: 230px;
+        height: 230px;
+    }
+
+    .diwali-image-overlay {
+        padding: 20px;
+    }
+
+    .diwali-image-overlay h2 {
+        font-size: 27px;
+    }
+
+    .diwali-image-overlay>p:not(.welcome-kicker) {
+        margin-bottom: 8px;
+        font-size: 12px;
+    }
+
+    .diwali-form-wrap {
+        padding: 22px 18px;
+    }
+
+    .diwali-product-row {
+        grid-template-columns: minmax(0, 1fr) 88px 25px;
+        gap: 5px;
+    }
+
+    .diwali-product-row select {
+        padding: 7px 5px;
+        font-size: 11px;
+    }
+}
+
+/* Fix: Diwali popup visibility */
+.welcome-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: transparent;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.welcome-popup.is-visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.welcome-popup-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.welcome-popup-box {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 950px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #fffdf8;
+}
+
+@media (max-width: 650px) {
+    .welcome-popup {
+        padding: 10px;
+    }
+
+    .welcome-popup-box {
+        max-height: 94dvh;
+    }
+}
+
+
+
+/* ==============================
+   DIWALI PRE-BOOKING POPUP
+============================== */
+
+.welcome-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    background: rgba(25, 10, 7, 0.78);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.welcome-popup.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.welcome-popup-overlay {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+}
+
+.welcome-popup-box.diwali-popup-box {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    width: 100%;
+    max-width: 1050px;
+    max-height: 90vh;
+    max-height: 90dvh;
+
+    overflow: auto;
+    background: #fffdf8;
+    border-radius: 14px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+}
+
+/* Left image section */
+.diwali-popup-visual {
+    position: relative;
+    min-width: 0;
+    min-height: 580px;
+    overflow: hidden;
+    background: #4b2014;
+}
+
+.diwali-main-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.diwali-image-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    padding: 32px;
+    color: #fff;
+
+    background: linear-gradient(
+        to top,
+        rgba(35, 12, 5, 0.9),
+        rgba(35, 12, 5, 0.15)
+    );
+}
+
+.diwali-image-overlay .welcome-kicker {
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.diwali-image-overlay h2 {
+    margin: 0 0 14px;
+    font-family: Georgia, serif;
+    font-size: clamp(28px, 3vw, 43px);
+    line-height: 1.15;
+}
+
+.diwali-image-overlay p {
+    margin: 0 0 14px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.diwali-image-overlay span {
+    color: #ffd47c;
+    font-size: 13px;
+}
+
+/* Right form section */
+.diwali-form-wrap {
+    position: relative;
+    min-width: 0;
+    padding: 35px 30px 25px;
+    overflow-y: auto;
+}
+
+.diwali-form-wrap .welcome-form-kicker {
+    margin-bottom: 8px;
+    color: #8c251f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.diwali-form-wrap h3 {
+    margin: 0 0 8px;
+    color: #2b1912;
+    font-family: Georgia, serif;
+    font-size: 29px;
+    line-height: 1.25;
+}
+
+.diwali-form-wrap .welcome-form-description {
+    margin-bottom: 22px;
+    color: #6b625b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.diwali-form-wrap .welcome-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 16px;
+}
+
+.diwali-form-wrap .welcome-field > label {
+    color: #352820;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.diwali-form-wrap input:not([type="checkbox"]),
+.diwali-form-wrap select {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+
+    border: 1px solid #e2d5c6;
+    border-radius: 7px;
+    background: #fff;
+    color: #2b211c;
+    font: inherit;
+    font-size: 13px;
+}
+
+.diwali-form-wrap input:focus,
+.diwali-form-wrap select:focus {
+    outline: 2px solid rgba(140, 37, 31, 0.2);
+    border-color: #8c251f;
+}
+
+/* Sweet and quantity dropdowns */
+#diwaliProductRows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.diwali-product-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 105px 32px;
+    align-items: center;
+    gap: 8px;
+}
+
+.diwali-remove-product {
+    width: 32px;
+    height: 36px;
+    border: 0;
+    border-radius: 6px;
+    background: #f8e7e3;
+    color: #8c251f;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.diwali-add-product {
+    margin-top: 10px;
+    padding: 9px 12px;
+    border: 1px dashed #8c251f;
+    border-radius: 7px;
+    background: transparent;
+    color: #8c251f;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* Consent and submit */
+.diwali-form-wrap .welcome-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin: 18px 0;
+
+    color: #62564e;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.diwali-form-wrap .welcome-consent input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    accent-color: #8c251f;
+}
+
+.diwali-form-wrap .welcome-consent a {
+    color: #8c251f;
+    text-decoration: underline;
+}
+
+.diwali-form-wrap .welcome-submit {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 15px;
+
+    border: 0;
+    border-radius: 7px;
+    background: #8c251f;
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.diwali-form-wrap .welcome-submit:hover {
+    background: #681a16;
+}
+
+.diwali-form-wrap .welcome-form-status,
+.diwali-form-wrap .welcome-privacy-note {
+    margin-top: 12px;
+    color: #766b63;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* Close button */
+.welcome-popup-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 5;
+
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: #351b14;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Tablet and mobile */
+@media (max-width: 760px) {
+    .welcome-popup {
+        padding: 10px;
+    }
+
+    .welcome-popup-box.diwali-popup-box {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        max-height: 94vh;
+        max-height: 94dvh;
+        border-radius: 12px;
+    }
+
+    .diwali-popup-visual {
+        min-height: 230px;
+        height: 30vh;
+        max-height: 280px;
+    }
+
+    .diwali-image-overlay {
+        padding: 20px;
+    }
+
+    .diwali-image-overlay h2 {
+        font-size: clamp(25px, 6vw, 34px);
+    }
+
+    .diwali-image-overlay .welcome-kicker {
+        margin-bottom: 6px;
+    }
+
+    .diwali-image-overlay p {
+        margin-bottom: 7px;
+        font-size: 12px;
+    }
+
+    .diwali-image-overlay span {
+        font-size: 11px;
+    }
+
+    .diwali-form-wrap {
+        padding: 24px 20px;
+        overflow: visible;
+    }
+
+    .diwali-form-wrap h3 {
+        font-size: 25px;
+    }
+
+    .welcome-popup-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .diwali-popup-visual {
+        min-height: 200px;
+        height: 25vh;
+    }
+
+    .diwali-form-wrap {
+        padding: 20px 14px;
+    }
+
+    .diwali-product-row {
+        grid-template-columns: minmax(0, 1fr) 88px 28px;
+        gap: 5px;
+    }
+
+    .diwali-remove-product {
+        width: 28px;
+    }
+}
